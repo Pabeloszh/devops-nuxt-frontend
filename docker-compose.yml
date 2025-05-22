@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  frontend-dev:
+    build:
+      context: .
+      target: dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - HOST=0.0.0.0
+    command: npm run dev
+  frontend-prod:
+    build:
+      context: .
+      target: prod
+    ports:
+      - "80:80"
+    environment:
+      - PORT=80
+      - HOST=0.0.0.0
