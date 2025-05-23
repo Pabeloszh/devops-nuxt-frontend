@@ -1,10 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  modules: ['@nuxt/eslint', '@nuxt/test-utils/module'],
   devtools: { enabled: false },
-  modules: [
-    '@nuxt/test-utils/module'
-  ],
+  compatibilityDate: '2024-11-01',
   vite: {
     server: {
       host: true,
@@ -13,5 +11,5 @@ export default defineNuxtConfig({
         usePolling: true,
       },
     },
-  }
+  },
 })
