@@ -13,7 +13,7 @@ CMD ["npm", "run", "dev"]
 
 # Build Stage build
 FROM base AS build
-CMD ["npm", "run", "build"]
+RUN ["npm", "run", "build"]
 
 # Build Stage production
 FROM node:22-alpine as prod
