@@ -1,19 +1,34 @@
-name: Build and Push Docker Image
+name: Release
 
 on:
   push:
     branches: ['main']
     tags:
       - 'v*.*.*'
-  workflow_run:
-    workflows: ['Build']
-    types:
-      - completed
 
 jobs:
-  release:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Echo test
-        run: echo "Hello World"
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Extract repository/service name
+        id: extract-name
+        run: echo "REPO_NAME=$(basename $GITHUB_REPOSITORY)" >> $GITHUB_ENV
+
+      - name: Extract current version from package.json
+        id: get-version
+        run: |
+          version=$(node -p "require('./package.json').version.replace('-snapshot', '')")
+          echo "VERSION=$version" >> $GITHUB_ENV  
+
+      - name: Log in to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
