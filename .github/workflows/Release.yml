@@ -2,8 +2,7 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches:
-      branches: ['main']
+    branches: ['main']
     tags:
       - 'v*.*.*'
   workflow_run:
