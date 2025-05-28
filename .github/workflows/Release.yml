@@ -38,7 +38,7 @@ jobs:
           file: Dockerfile
           target: prod
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}:${{ env.REPO_NAME }}-${{ env.VERSION }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/privatediregistry:${{ env.REPO_NAME }}-${{ env.VERSION }}
 
       - name: Create GitHub Tag
         run: |
