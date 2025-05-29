@@ -2,16 +2,14 @@ name: CI/CD with Docker
 
 on:
   push:
-    branches: [main]
-    tags:
-        - 'v*.*.*'
+    branches: [develop]
   pull_request:
-    branches: [main]
+    branches: [develop]
 
 
 jobs:
   lint-test-build:
-    name: Lint, Test, Build and push Docker Image
+    name: Lint, Test, Build and push Dev Docker Image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -101,5 +99,4 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.meta.outputs.REPO_NAME }}:${{ env.VERSION }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.meta.outputs.REPO_NAME }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.meta.outputs.REPO_NAME }}:${{ env.VERSION }}-dev
