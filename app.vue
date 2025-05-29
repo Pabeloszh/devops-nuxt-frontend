@@ -1,10 +1,8 @@
 <template>
   <div>
     <p
-      v-if="isLoading"
-      class="bg-red-200"
-    >
-      status: loading...
+      v-if="isLoading" class="bg-red-200"
+    >status: loading...
     </p>
     <p v-else-if="status">
       status: {{ status }}
