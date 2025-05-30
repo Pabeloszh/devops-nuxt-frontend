@@ -18,11 +18,13 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import pkg from 'package.json'
 
 const status = ref(null)
 const isLoading = ref(true)
 
 onMounted(async () => {
+  console.log(pkg.version)
   try {
     const { data } = await axios.get('http://localhost:8080/api/test')
     status.value = data.status || 'OK'
