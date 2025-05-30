@@ -18,7 +18,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
-import pkg from 'package.json'
+import pkg from './package.json'
 
 const status = ref(null)
 const isLoading = ref(true)
