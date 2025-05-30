@@ -18,6 +18,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import pkg from 'package.json'
 
 const status = ref(null)
 const isLoading = ref(true)
@@ -32,6 +33,7 @@ onMounted(async () => {
     status.value = null
   }
   finally {
+    console.log(pkg.version)
     isLoading.value = false
   }
 })
