@@ -3,9 +3,9 @@ name: Docker Release (Dev)
 on:
   workflow_run:
     workflows: ["Code Quality Checks"]
-    types: [completed]
     branches: [develop]
-
+    types:
+      - completed
 jobs:
   release-dev:
     if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'develop' }}
